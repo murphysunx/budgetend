@@ -243,6 +243,6 @@ class BillItemCategoryList(APIView):
                 category = Category.objects.filter(category=category)
                 category.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
-        except Exception e:
+        except Exception as e:
             savepoint_rollback(savepoint)
             return Response(data={'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)

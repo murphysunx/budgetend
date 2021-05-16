@@ -7,10 +7,12 @@ class BillSerializer(serializers.Serializer):
     payer = serializers.CharField(required=True, max_length=20)
     payee = serializers.CharField(required=True, max_length=20)
     venue = serializers.CharField(required=True, max_length=50)
-    effectStartDate = serializers.DateField(required=True)
-    effectEndDate = serializers.DateField()
-    payDate = serializers.DateField()
-    note = serializers.CharField(required=False, max_length=50)
+    effectStartDate = serializers.DateTimeField(
+        required=False)
+    effectEndDate = serializers.DateTimeField(required=False)
+    payDate = serializers.DateTimeField(required=True)
+    note = serializers.CharField(
+        required=False, max_length=50, allow_blank=True)
     cost = serializers.DecimalField(
         max_digits=7, decimal_places=2, required=True)
 
@@ -41,7 +43,8 @@ class BillItemSerializer(serializers.Serializer):
     qty = serializers.IntegerField(required=False)
     cost = serializers.DecimalField(
         max_digits=7, decimal_places=2, required=True)
-    note = serializers.CharField(max_length=20, required=False)
+    note = serializers.CharField(
+        max_length=20, required=False, allow_blank=True)
     # categories = serial
     bill_id = serializers.CharField(max_length=20, required=True)
 

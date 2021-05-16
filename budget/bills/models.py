@@ -5,11 +5,11 @@ from django.db import models
 
 class Bill(models.Model):
     payer = models.CharField(max_length=20)
-    payee = models.CharField(max_length=20)
-    venue = models.CharField(max_length=50)
-    effectStartDate = models.DateField()
-    effectEndDate = models.DateField(null=True)
-    payDate = models.DateField(null=True)
+    payee = models.CharField(max_length=20, null=True)
+    venue = models.CharField(max_length=50, null=True)
+    effectStartDate = models.DateTimeField(null=True)
+    effectEndDate = models.DateTimeField(null=True)
+    payDate = models.DateTimeField()
     note = models.CharField(max_length=50, null=True)
     cost = models.DecimalField(max_digits=7, decimal_places=2)
 
